@@ -1,9 +1,32 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import type { PointerEvent } from "react";
 
 export default function HeroSignal() {
   const reduceMotion = useReducedMotion();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(pointerY, [-0.5, 0.5], [16, -16]), {
+    stiffness: 180,
+    damping: 18,
+  });
+  const rotateY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-16, 16]), {
+    stiffness: 180,
+    damping: 18,
+  });
+
+  function rotateWithPointer(event: PointerEvent<SVGSVGElement>) {
+    if (reduceMotion) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
+    pointerY.set((event.clientY - bounds.top) / bounds.height - 0.5);
+  }
+
+  function resetRotation() {
+    pointerX.set(0);
+    pointerY.set(0);
+  }
 
   return (
     <div className="hero-signal" aria-hidden="true">
@@ -15,9 +38,9 @@ export default function HeroSignal() {
       <motion.svg
         viewBox="0 0 260 260"
         className="signal-mark"
-        whileHover={reduceMotion ? undefined : { rotate: 360, scale: 1.06 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        style={{ transformOrigin: "50% 50%" }}
+        onPointerMove={rotateWithPointer}
+        onPointerLeave={resetRotation}
+        style={reduceMotion ? undefined : { rotateX, rotateY, transformPerspective: 700 }}
       >
         <motion.path
           d="M48 48 H96 L130 137 L105 190 Z"

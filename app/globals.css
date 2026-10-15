@@ -53,7 +53,7 @@ h1, h2, h3 { font-family: var(--font-fraunces), serif; letter-spacing: -0.01em; 
 .signal-orbit::before, .signal-orbit::after { content: ""; position: absolute; border-radius: 50%; background: var(--gold); }
 .signal-orbit::before { width: 7px; height: 7px; top: -4px; left: 50%; }
 .signal-orbit::after { width: 5px; height: 5px; bottom: 12%; right: 7%; background: var(--ink); border: 1px solid var(--gold); }
-.signal-mark { position: absolute; inset: 14%; width: 72%; height: 72%; fill: none; stroke: var(--gold); stroke-width: 1.5; cursor: grab; }
+.signal-mark { position: absolute; inset: 14%; width: 72%; height: 72%; fill: none; stroke: var(--gold); stroke-width: 1.5; cursor: grab; transform-box: fill-box; transform-origin: center; touch-action: none; }
 .signal-mark:active { cursor: grabbing; }
 .signal-label { position: absolute; font-size: 9px; letter-spacing: 0.14em; color: var(--gold); }
 .signal-label-top { top: 1%; left: 50%; transform: translateX(-50%); white-space: nowrap; }
