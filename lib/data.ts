@@ -36,8 +36,7 @@ export const process = [
 export const team = [
   { photo: "/team/founder-1.jpg", initials: "A", name: "Adhi Sridaran", phone: "+91 90953 67000", role: "Founder-1", detail: "Full Stack , AI , DevOps" },
   { photo: "/team/founder-2.jpeg", initials: "S", name: "Srishanth Chandrasekaran", phone: "+91 73387 16811", role: "Founder-2", detail: "Full Stack " },
-  { photo: "/team/founder-3.jpg", initials: "A", name: "Anika Sharon S", phone: "+91 94881 86182", role: "Founder-3", detail: "Frontend , UI/UX" },
-  { photo: "/team/founder-4.png", initials: "S", name: "Sansita", phone: "+91 63816 11147", role: "Founder-4", detail: "Client communication, project management" },
+  
 ];
 
 export const social = [
